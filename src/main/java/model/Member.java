@@ -8,7 +8,7 @@ package model;
  *                    setAbc() => abc
  * */
 public class Member {
-     private String id;
+     private String id; //private => getter,setter를 이용해서 값을 넣어야함
      private String pass;
      private String name;
      private int gender;
