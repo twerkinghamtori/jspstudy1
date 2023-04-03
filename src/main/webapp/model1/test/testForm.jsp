@@ -28,7 +28,7 @@
 </script>
 </head>
 <body>
-<form action="test1.jsp" method="post" 
+<form action="testlist.jsp" method="post" 
       onsubmit="return inputcheck(this)">
 <table><caption>방명록쓰기</caption>
 <tr><td>방문자</td><td><input type="text" name="writer"></td></tr>
@@ -37,4 +37,7 @@
     <td><textarea rows="10" cols="60" name="content"></textarea></td></tr>
 <tr><td colspan="2" align="center">
      <input type="submit" value="글쓰기"></td></tr>
-</table></form></body></html>
+</table>
+</form>
+</body>
+</html>
