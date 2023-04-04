@@ -51,7 +51,9 @@
       <td><%=m.getTel() %></td>
       <td>
         <a href="updateForm.jsp?id=<%=m.getId()%>">수정</a>
+        <% if(!m.getId().equals("admin")) {%>
         <a href="deleteForm.jsp?id=<%=m.getId()%>">강제탈퇴</a>
+        <%} %>
       </td>
    </tr>
    <% } %>

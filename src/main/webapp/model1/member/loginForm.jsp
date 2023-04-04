@@ -20,6 +20,10 @@
     	}
     	return true;
     }
+    function win_open(page) {
+    	let op = "width=500, height=350, left=50, top=150";
+    	open(page+".jsp", "", op);
+    }
 </script>
 </head>
 <body>

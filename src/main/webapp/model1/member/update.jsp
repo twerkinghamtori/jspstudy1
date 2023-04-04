@@ -27,18 +27,18 @@
    if(!mem.getPass().equals(mem2.getPass())) { %>
    <script>
       alert("비밀번호 오류");
-      location.href="updateForm.jsp?id="+ <%=mem.getId()%>;
+      location.href="updateForm.jsp?id=<%=mem.getId()%>";
    </script>
    <%} else { 
 	   if(dao.update(mem)) { %>
 		  <script>
 		  alert("회원정보 수정 완료");
-		  location.href="info.jsp?id="+<%=mem.getId()%>;
+		  location.href="info.jsp?id=<%=mem.getId()%>";
 		  </script> 
 	<% } else {%>
 	      <script>
 	      alert("회원정보 수정 실패");
-	      location.href = "updateForm.jsp?id="+ <%=mem.getId()%>; //post 방식인데 id=? 이거 어캐씀?
+	      location.href = "updateForm.jsp?id=<%=mem.getId()%>"; //post 방식인데 id=? 이거 어캐씀? updateForm->update로 넘어갈때 post방식이란 소리임.
 	      </script>
     <% } %>
   <%} %>

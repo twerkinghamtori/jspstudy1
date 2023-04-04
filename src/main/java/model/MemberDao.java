@@ -92,8 +92,9 @@ public class MemberDao {
     	 try {
     		 pstmt = con.prepareStatement("select * from member");
     		 rs = pstmt.executeQuery();
+
     		 while(rs.next()) {
-    			 Member m = new Member(); //계속 같은 이름으로 member 객체 생성하는거 아닌가? duplicate name error 안뜸?
+    			 Member m = new Member(); //계속 같은 이름으로 member 객체 생성하는거 아닌가? 변수의..사용..영역....while문 내에서만 사용할 수 있는 변수 m
     			 m.setId(rs.getString("id"));
     			 m.setPass(rs.getString("pass"));
     			 m.setName(rs.getString("name"));
@@ -101,7 +102,7 @@ public class MemberDao {
     			 m.setTel(rs.getString("tel"));
     			 m.setEmail(rs.getString("email"));
     			 m.setPicture(rs.getString("picture")); 
-    			 list.add(m);
+    			 list.add(m); //여기서 참조르 하고 올라가서 새로 생성하면, 참조관계가 끊어지니까 m이 garbage collector에 의해 사라짐...(?)
     		 }
     		 return list;    		 
     	 } catch(SQLException e) {
@@ -127,5 +128,27 @@ public class MemberDao {
     		 DBConnection.close(con, pstmt, null);
     	 }
     	 return false;
+     }
+     
+     public String idSearch(String email, String tel) {
+    	 Connection con = DBConnection.getConnection();
+    	 PreparedStatement pstmt = null;
+    	 String sql = "select id from member where email=? and tel=?";
+    	 ResultSet rs = null;
+    	 try {
+    		 pstmt = con.prepareStatement(sql);
+    		 pstmt.setString(1,email);
+    		 pstmt.setString(2, tel);
+    		 rs = pstmt.executeQuery();
+    		 if(rs.next()) {
+    			 String id = rs.getString("id");
+        		 return id;
+    		 }    				 
+    	 } catch(SQLException e) {
+    		 e.printStackTrace();
+    	 } finally {
+    		 DBConnection.close(con, pstmt, rs);
+    	 }
+    	 return null;
      }
 }

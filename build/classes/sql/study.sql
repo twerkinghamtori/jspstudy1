@@ -10,4 +10,5 @@ create table member (
    picture varchar(200)
 );
 
+insert into member (id,pass,name,gender,tel,email,picture) values (1,12,123,1,1234,12345,0);
 select * from member

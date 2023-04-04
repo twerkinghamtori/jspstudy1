@@ -25,10 +25,15 @@
     	}
     	return true;
     }
+    function win_upload() {
+    	let op = "width=500, height=500, left=50, top=150";
+    	open("pictureForm.jsp", "", op);
+    }
 </script>
 </head>
 <body>
    <form action="join.jsp" name="f" method="post" onsubmit="return input_check(this)">
+       <%-- value = picture.jsp에서 업로드된 이미지의 이름 --%>
       <input type="hidden" name="picture" value="">
       <table>
          <tr>

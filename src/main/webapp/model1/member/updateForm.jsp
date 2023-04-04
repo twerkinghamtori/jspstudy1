@@ -17,7 +17,7 @@
      alert("로그인이 필요합니다.");
      location.href="loginForm.jsp";
   </script>
-<%} else if(!id.equals(login) && !id.equals("admin")) {%>
+<%} else if(!id.equals(login) && !login.equals("admin")) {%>
   <script>
      alert("내 정보만 수정이 가능합니다.");
      location.href="main.jsp";
