@@ -19,7 +19,7 @@
 	   </script>
 <% } else { %>
        <script>
-       opener.document.f.id.value = '<%=id%>';
+       opener.document.f.id.value = "<%=id%>";
        self.close();
        </script>	    
 <% } %>   

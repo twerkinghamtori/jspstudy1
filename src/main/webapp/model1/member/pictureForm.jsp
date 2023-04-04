@@ -29,7 +29,7 @@
    <script type="text/javascript"> <!-- 화면에서 사진 등록 전, 미리보기 하기 위한 코드 -->
       let imagefile=document.querySelector('#imageFile');
       let preview = document.querySelector('#preview');
-      imagefile.addEventListener('change', function(e) {//change : 이미지 파일 새롭게 선택시(변경시) 이벤트 listener => function 실행
+      imagefile.addEventListener('change', function(e) {//change : 이미지 파일 새롭게 선택시(변경시) 이벤트 listener => function(event handler) 실행
     	  let get_file = e.target.files; //선택된 file..?
     	  let reader = new FileReader(); //파일을 읽기 위한 stream
     	  reader.onload = (function(Img) { //(Img)==(preview), preview가 매개변수. 

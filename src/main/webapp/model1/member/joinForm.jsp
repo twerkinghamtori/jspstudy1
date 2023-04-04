@@ -27,7 +27,7 @@
     }
     function win_upload() {
     	let op = "width=500, height=500, left=50, top=150";
-    	open("pictureForm.jsp", "", op);
+    	open("pictureForm.jsp", "", op); //window.open("URL","팝업이름","팝업 옵션");
     }
 </script>
 </head>

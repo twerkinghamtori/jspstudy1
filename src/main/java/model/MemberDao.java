@@ -151,4 +151,29 @@ public class MemberDao {
     	 }
     	 return null;
      }
+     
+     public String pwSearch(String id, String email, String tel) {
+    	 Connection con = DBConnection.getConnection();
+    	 PreparedStatement pstmt = null;
+    	 ResultSet rs = null;
+    	 String sql = "select pass from member where id=? and email=? and tel=?";
+    	 try {
+    		 pstmt = con.prepareStatement(sql);
+    		 pstmt.setString(1, id);
+    		 pstmt.setString(2, email);
+    		 pstmt.setString(3, tel);
+    		 rs = pstmt.executeQuery();
+    		 String pass = "";
+    		 if(rs.next()) {
+    			 pass = rs.getString("pass");
+    			 pass = pass.replace(pass.substring(0,2), "**");
+    		 } else pass=null;    		 
+    		 return pass;
+    	 } catch(SQLException e) {
+    		 e.printStackTrace();
+    	 } finally {
+    		 DBConnection.close(con, pstmt, rs);
+    	 }
+    	 return null;
+     }
 }
