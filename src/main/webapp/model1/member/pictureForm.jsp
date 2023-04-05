@@ -38,7 +38,7 @@
     		 }  
     	  })(preview);
     	  if(get_file){ //선택된 파일이 있다면, js는 조건문 안에 무조건 boolean 아니어도 됨. => (if(get_file) : 선택된 파일이 존재한다면,)
-    		  reader.readAsDataURL(get_file[0]); //[0]은 뭐지? 배열로 받나? ㅇㅇ e.target.file"s" 니까. 첫밴째 선택된 파일.
+    		  reader.readAsDataURL(get_file[0]); //[0]은 뭐지? 배열로 받나? ㅇㅇ e.target.file"s" 니까. 첫번째 선택된 파일.
     	      //readAsDataURL : 파일 읽기 => onload 이벤트 발생.
     	  }
       });

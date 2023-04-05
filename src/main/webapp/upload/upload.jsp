@@ -14,6 +14,7 @@
 <body>
 <%
    String uploadPath = application.getRealPath("/")+"upload/"; //업로드 되는 실제 경로를 설정. webapplication 폴더/upload폴더
+//   System.out.println(application.getRealPath("/"));
    int size=10*1024*1024; //업로드 가능한 최대 파일의 크기(10MB?)
    File f = new File(uploadPath);
    if(!f.exists()) f.mkdirs(); //만약 업로드 폴더가 없다면, 폴더 생성해.(make directory?)

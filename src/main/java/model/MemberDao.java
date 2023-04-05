@@ -22,7 +22,7 @@ public class MemberDao {
     		 pstmt.setString(5, mem.getTel());
     		 pstmt.setString(6, mem.getEmail());
     		 pstmt.setString(7, mem.getPicture());
-    		 if(pstmt.executeUpdate() > 0) return true; //executeUpdate() 뭐더라? row count?
+    		 if(pstmt.executeUpdate() > 0) return true; //executeUpdate() : insert, update, delete 에서 반영된 레코드 건수 반환, create, drop은 -1 반환.
     		 else return false;    		 
     	 } catch(SQLException e) {
     		 e.printStackTrace();
@@ -175,5 +175,23 @@ public class MemberDao {
     		 DBConnection.close(con, pstmt, rs);
     	 }
     	 return null;
+     }
+     
+     public boolean updatePass(String id, String chgpass) {
+    	 Connection con = DBConnection.getConnection();
+    	 PreparedStatement pstmt = null;
+    	 String sql = "update member set pass=? where id=?";
+    	 try {
+    		 pstmt = con.prepareStatement(sql);
+    		 pstmt.setString(1, chgpass);
+    		 pstmt.setString(2, id);
+    		 if(pstmt.executeUpdate()>0) return true; 
+    		 else return false;
+    	 } catch(SQLException e) {
+    		 e.printStackTrace();
+    	 } finally {
+    		 DBConnection.close(con,pstmt, null);
+    	 }
+    	 return false;
      }
 }

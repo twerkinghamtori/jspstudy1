@@ -21,7 +21,7 @@
    if(pass==null) {%>
        <script>
           alert("정보에 맞는 비밀번호를 찾을 수 없습니다.");
-          self.close();
+          location.href="pwForm.jsp";
        </script>
 <% } else {%>
 <!DOCTYPE html>
@@ -32,6 +32,7 @@
 </head>
 <body>
    <h3>비밀번호는 <%=pass%> 입니다.</h3>
+   <input type="button" value="닫기" onclick="self.close();">
 </body>
 </html>
 <% } %>

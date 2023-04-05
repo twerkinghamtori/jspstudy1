@@ -8,6 +8,8 @@
      3. 현재화면 close() => javascript --%>
 <% //path : 파일의 업로드 위치 = 현재폴더 + model/member/picture 폴더 생성.
    String path = application.getRealPath("") + "model1/member/picture/";
+// D:\html\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jspstudy1\ + model1\member\picture\
+//   System.out.println(application.getRealPath(""));
    String fname = null;
    File f = new File(path);
    if(!f.exists()) f.mkdirs(); //업로드 폴더가 없는 경우 폴더 생성.
