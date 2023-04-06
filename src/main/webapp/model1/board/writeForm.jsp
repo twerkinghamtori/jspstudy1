@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String login = (String)session.getAttribute("login"); 
+   String boardid = (String)session.getAttribute("boardid");
+   if(boardid==null) boardid="1";%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +31,7 @@
 		   f.content.focus();
 		   return;
 	   }
-	   f.submit(); //form의 action 페이지로 요청을 해주는 기능.
+	   f.submit(); //submit 발생 => form의 action 페이지로 요청을 해주는 기능.
    }
 </script>
 </head>
@@ -61,9 +64,14 @@
          <td><input type="file" name="file1"></td>
       </tr>
       
+     
       <tr>
          <td colspan="2">
+         <%if(!boardid.equals("1") || (login!=null && login.equals("admin"))) {%>
             <a href="javascript:inputcheck()">[게시물등록]</a>
+         <%} else { %>
+             &nbsp;
+         <%} %>
          </td>
       </tr>
    </table>

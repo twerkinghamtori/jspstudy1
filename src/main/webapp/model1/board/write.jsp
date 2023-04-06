@@ -20,7 +20,7 @@
    board.setTitle(multi.getParameter("title"));
    board.setContent(multi.getParameter("content"));
    board.setFile1(multi.getFilesystemName("file1")); //file 이름 가지고 올때는 getFilesystemName()임. getParameter()하지 않게 주의할 것
-   String boardid = multi.getParameter("boardid");
+   String boardid = (String)session.getAttribute("boardid");
    if(boardid==null) boardid = "1";
    board.setBoardid(boardid);
    
