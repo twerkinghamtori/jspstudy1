@@ -70,12 +70,14 @@
       <% int boardnum = boardcount-(pageNum-1)*10 +1;
          for(Board b : list) {
          boardnum--;
+         
          Date date = b.getRegdate();
          Date date2 = new Date();
          SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
          %>
        <tr>
           <td><%=boardnum%></td>
+          
           <%if(b.getFile1() == null) { %>
           <td style="text-align:left">
              &nbsp;&nbsp;&nbsp;<a href="info.jsp?num=<%=b.getNum() %>"><%=b.getTitle() %></a>
@@ -89,7 +91,9 @@
                  <a href="info.jsp?num=<%=b.getNum() %>"><%=b.getTitle() %></a>
               </td>
           <%} %>
+          
           <td><%=b.getWriter() %></td>
+          
           <% if(!sf.format(date2.getTime()).equals(sf.format(date))) {
         	  SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
         	  <td><%=sf2.format(date) %></td>
@@ -97,6 +101,7 @@
               SimpleDateFormat sf3 = new SimpleDateFormat("HH:mm:ss");%> 
               <td><%=sf3.format(date) %></td>        
           <% } %> 
+          
           <td><%=b.getReadcnt() %></td>          
        </tr>
     <% } %>
