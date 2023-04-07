@@ -41,7 +41,6 @@
    case "2" : boardName = "자유게시판"; break;
    case "3" : boardName = "QnA"; break;
    }
-   
 %>
 <!DOCTYPE html>
 <html>
@@ -78,16 +77,21 @@
        <tr>
           <td><%=boardnum%></td>
           
-          <%if(b.getFile1() == null) { %>
+          <%if(b.getFile1() == null || b.getFile1().equals("")) { %>             
           <td style="text-align:left">
-             &nbsp;&nbsp;&nbsp;<a href="info.jsp?num=<%=b.getNum() %>"><%=b.getTitle() %></a>
+             <% if(b.getGrplevel() >0) { %>
+                   <% for(int i=0; i<b.getGrplevel(); i++) {%>
+                        &nbsp;&nbsp;	
+                  <% } %>
+             &nbsp;&nbsp;&nbsp; └<a href="info.jsp?num=<%=b.getNum() %>"><%=b.getTitle() %></a>
+             <%} else{ %>
+             &nbsp;&nbsp;&nbsp; <a href="info.jsp?num=<%=b.getNum() %>"><%=b.getTitle() %></a>
+             <%} %>
           </td>
           <%} else { 
-              String path = application.getRealPath("/") + "model1/board/file/"; //web에서 절대경로로 경로탐색이 불가함.%> 
-              <td style="text-align:left">
-<%--              <a href="<%=path%><%=b.getFile1() %>">@</a>   --> <!-- web에서 절대경로로 경로탐색이 불가함. --> --%>           
-                 <a href="file/<%=b.getFile1() %>">@</a> <!-- 현재폴더(file/) 밑에서 파일이름으로 찾을 것. 
-                 http://localhost:8080/jspstudy1/model1/board/file/dog.jpg 로 요청 받게됨. 	-->
+              String path = application.getRealPath("/") + "model1/board/file/"; //web에서 절대경로로 경로탐색이 불가함.http://localhost:8080/jspstudy1/model1/board/file/dog.jpg 로 요청 받게됨.%> 
+              <td style="text-align:left">         
+                 <a href="file/<%=b.getFile1() %>">@</a> <!-- 현재폴더(file/) 밑에서 파일이름으로 찾을 것. -->
                  <a href="info.jsp?num=<%=b.getNum() %>"><%=b.getTitle() %></a>
               </td>
           <%} %>

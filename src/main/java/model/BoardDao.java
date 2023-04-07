@@ -77,7 +77,7 @@ public class BoardDao {
     	ResultSet rs = null;
     	List<Board> list = new ArrayList<Board>();
     	// limit 시작레코드번호, 개수 : 오라클에서는 사용 불가. substring 같은 거구만..ㅎㅅㅎ
-    	String sql = "select * from board where boardid=? order by grp desc, grpstep asc limit ?,?";
+    	String sql = "select * from board where boardid=? order by grp desc, grpstep asc limit ?,?"; //grp desc, grpstep asc(답글 출력 순서)
     	try {
     		pstmt=con.prepareStatement(sql);
     		pstmt.setString(1, boardid);
@@ -149,11 +149,65 @@ public class BoardDao {
     	try {
     		pstmt = con.prepareStatement(sql);
     		pstmt.setInt(1, num);
-    		pstmt.executeQuery();
+    		pstmt.executeUpdate();
     	} catch(SQLException e) {
     		e.printStackTrace();
     	} finally {
     		DBConnection.close(con, pstmt, null);
     	}
+    }
+    
+    public void grpStepAdd(int grp, int grpstep) {
+    	Connection con = DBConnection.getConnection();
+    	PreparedStatement pstmt = null;
+    	String sql = "update board set grpstep=grpstep+1 where grp=? and grpstep>?" ; //내 grpstep보다 큰 애들만 1씩 더해서 출력을 뒤로 미뤄줌. 내 grpstep은 reply.jsp에서 setGrpstep에서 1 더함.
+    	try {
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setInt(1, grp);
+    		pstmt.setInt(2, grpstep);
+    		pstmt.executeUpdate();
+    	} catch(SQLException e) {
+    		e.printStackTrace();
+    	} finally {
+    		DBConnection.close(con, pstmt, null);
+    	}
+    }
+    
+    public boolean update(Board b) {
+    	Connection con = DBConnection.getConnection();
+    	PreparedStatement pstmt = null;
+    	String sql = "update board set writer=?, title=?, content=?, file1=? where num=?";
+    	try {
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, b.getWriter());
+    		pstmt.setString(2, b.getTitle());
+    		pstmt.setString(3, b.getContent());
+    		pstmt.setString(4, b.getFile1());
+    		pstmt.setInt(5, b.getNum());
+    		if(pstmt.executeUpdate()>0) return true;
+    		else return false;
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    	} finally {
+    		DBConnection.close(con, pstmt, null);
+    	}
+    	return false;    	
+    }
+    
+    public boolean delete(int num) {
+    	Connection con = DBConnection.getConnection();
+    	PreparedStatement pstmt = null;
+    	String sql = "delete from board where num=?";
+    	try {
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setInt(1, num);
+    		if(pstmt.executeUpdate()>0) return true;
+    		else return false;
+    	} catch(SQLException e) {
+    		e.printStackTrace();
+    	} finally {
+    		DBConnection.close(con, pstmt, null);
+    	}
+    	return false;
     }
 }

@@ -7,14 +7,14 @@
      3. num값의 게시물의 조회수 증가시키기 void BoardDao.readcntAdd(num)
      4. 조회된 게시물 화면에 출력 --%>
 <%
-   int num = Integer.parseInt(request.getParameter("num")); //list.jsp에서 게시물 누르면서 num이라는 parameter가 전달됨.
+   int num = Integer.parseInt(request.getParameter("num")); //list.jsp에서 게시물 누르면서 num이라는 parameter가 전달됨. info.jsp?num=@@ 로 넘겼기때문에
    String boardid = (String)session.getAttribute("boardid");
    if(boardid==null) boardid="1";
    
    BoardDao dao = new BoardDao();
    Board b = dao.selectOne(num);
    
-   dao.readcntAdd(num); //조회수 증가
+   dao.readcntAdd(num); //조회수 증가, 새로고침 눌러도 요청이 들어오니까 조회수 증가?
 %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
       
       <tr>
          <th>제목</th>
-         <td style="text-align:left;"><%=b.getContent() %></td>
+         <td style="text-align:left;"><%=b.getTitle() %></td>
       </tr>
       
       <tr>

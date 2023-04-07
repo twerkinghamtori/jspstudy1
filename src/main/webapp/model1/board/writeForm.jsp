@@ -2,7 +2,16 @@
     pageEncoding="UTF-8"%>
 <% String login = (String)session.getAttribute("login"); 
    String boardid = (String)session.getAttribute("boardid");
-   if(boardid==null) boardid="1";%>
+   if(boardid==null) boardid="1";
+   if(boardid.equals("1")) {
+	    if(login==null || !login.equals("admin")) {%>
+          <script>
+             alert("관리자만 글쓰기가 가능합니다.");
+             location.href="list.jsp?boardid=1";
+          </script>
+     <% return; // ★jsp service에서 return 된다는 의미. 밑에 부분을 실행하지 않도록.
+        }%>
+<% } %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,11 +76,7 @@
      
       <tr>
          <td colspan="2">
-         <%if(!boardid.equals("1") || (login!=null && login.equals("admin"))) {%>
             <a href="javascript:inputcheck()">[게시물등록]</a>
-         <%} else { %>
-             &nbsp;
-         <%} %>
          </td>
       </tr>
    </table>

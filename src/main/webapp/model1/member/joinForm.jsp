@@ -29,6 +29,11 @@
     	let op = "width=500, height=500, left=50, top=150";
     	open("pictureForm.jsp", "", op); //window.open("URL","팝업이름","팝업 옵션");
     }
+    function win_open(path) {
+    	let id = f.id.value;
+    	let op = "width=500, height=350, left=50, top=150";
+    	open(path+".jsp?id="+id, "", op);
+    }
 </script>
 </head>
 <body>
@@ -42,7 +47,10 @@
                <font size="1"><a href="javascript:win_upload()">사진등록</a></font>
             </td>
             <th>아이디</th>
-            <td><input type="text" name="id"></td>
+            <td>
+               <input type="text" name="id" id="chk">
+               <input type="button" value="아이디 중복 검사" onclick="win_open('idchk')">
+            </td>
          </tr>
          <tr>
              <th>비밀번호</th>
