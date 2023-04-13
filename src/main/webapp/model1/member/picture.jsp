@@ -17,7 +17,7 @@
    fname = multi.getFilesystemName("picture"); //업로드 된 파일의 이름을 fname에 저장.
 %>
 <script type="text/javascript">
-   //opener : 현재 window를 open한 window => joinForm.jsp가 여기서 opener. pictureForm.jsp 아님? 젤 먼저 호출한거 찾아들어가는건가?
+   //opener : 현재 window를 open한 window => joinForm.jsp가 여기서 opener. 
    img = opener.document.getElementById("pic"); //joinForm.jsp에 pic아이디를 가진 태그가 있음.
    img.src = "picture/<%=fname%>"; //joinForm.jsp에 이미지가 보여지게 됨.
    opener.document.f.picture.value="<%=fname%>"; //joinForm.jsp에 form태그(f)의 hidden태그(picture)

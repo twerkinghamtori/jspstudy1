@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원사진 등록</title>
-<link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
    <h3>사진업로드</h3>
