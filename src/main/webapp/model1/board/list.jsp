@@ -89,7 +89,7 @@
              <%} %>
           </td>
           <%} else { 
-              String path = application.getRealPath("/") + "model1/board/file/"; //web에서 절대경로로 경로탐색이 불가함.http://localhost:8080/jspstudy1/model1/board/file/dog.jpg 로 요청 받게됨.%> 
+			// String path = application.getRealPath("/") + "model1/board/file/"; //web에서 절대경로로 경로탐색이 불가함.http://localhost:8080/jspstudy1/model1/board/file/dog.jpg 로 요청 받게됨. --%> 
               <td style="text-align:left">         
                  <a href="file/<%=b.getFile1() %>">@</a> <!-- 현재폴더(file/) 밑에서 파일이름으로 찾을 것. -->
                  <a href="info.jsp?num=<%=b.getNum() %>"><%=b.getTitle() %></a>
